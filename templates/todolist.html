@@ -1,0 +1,40 @@
+<html><head>
+<meta charset="utf-8">
+<title>List</title></head>
+<body>
+<p>清單</p>
+<hr />
+<table width="600" border="1">
+  <tr>
+    <td>id</td>
+    <td>Job Name</td>
+	  <td>Job Content</td>
+    <td>Status</td>
+    <td>Due Date</Data></td>
+  </tr>
+    {% for rec in data %} <!--for迴圈，把data放入rec(迴圈內變數)-->
+    {% if rec.status==0 %}<!--用if 過濾條件-->
+	<tr>
+		<td>{{rec.id}}<a href="/delete?id={{rec.id}}">刪除</a></td>
+		<td>{{rec.jobName}}</td>
+		<td>{{rec.jobcontent}}</td>
+    <td>{{rec.status}}</td>
+    <td>{{rec.duedate}}<a href="/setfinish?id={{rec.id}}">標示為完成</a></td>
+    <!--利用"get"方法(超連結)將狀態交到後台更新轉為完成-->
+    <!--<a href="/delet?id={{rec.id}}">已完成刪除</a>-->
+	</tr>
+    {% else %}
+    <tr>
+    <td>{{rec.id}}<a href="/delete?id={{rec.id}}">刪除</a></td>
+		<td>{{rec.jobName}}</td>
+		<td>{{rec.jobcontent}}</td>
+    <td>{{rec.status}}</td>
+    <td>{{rec.duedate}}<a href="/setundone?id={{rec.id}}">標示為未完成</a></td>
+
+    {% endif %}
+    {% endfor %}
+  </tr>
+</table>
+<a href="/">go Home</a>
+</body></html>
+
